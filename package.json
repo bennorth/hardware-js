@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Work with hardware via the browser",
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --config rollup.config.js && cp example/index.html output"
   },
   "author": "Ben North <ben@redfrontdoor.org>",
   "contributors": [
