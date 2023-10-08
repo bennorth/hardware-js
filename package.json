@@ -17,6 +17,7 @@
     "@types/w3c-web-hid": "^1.0.4",
     "@types/w3c-web-usb": "^1.0.7",
     "@types/web-bluetooth": "^0.0.18",
+    "http-server": "^14.1.1",
     "rollup": "^4.0.2",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
