@@ -1,0 +1,13 @@
+{
+  "name": "hardware-js",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Work with hardware via the browser",
+  "scripts": {},
+  "author": "Ben North <ben@redfrontdoor.org>",
+  "contributors": [
+    "Michael Borcherds <michael@geogebra.org>"
+  ],
+  "license": "MIT",
+  "devDependencies": {}
+}
