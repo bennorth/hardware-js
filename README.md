@@ -26,3 +26,5 @@ npx http-server
 ```
 
 and visit `http://localhost:8080/` in your browser.
+
+ESLint is installed; you can do `npx eslint src/**/*.ts` to run it.
