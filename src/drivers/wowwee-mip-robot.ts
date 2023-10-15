@@ -42,7 +42,7 @@ class WowweeMipRobot_Device extends BleHandledDevice {
   ): Array<StringKeyedObject> {
     // QUERY: This was "event.srcElement.value.buffer", but no "event"
     // in scope.
-    var data = new Uint8Array(value.buffer);
+    const data = new Uint8Array(value.buffer);
 
     if (match(data, EVENT_RADAR)) {
       switch (data[3]) {

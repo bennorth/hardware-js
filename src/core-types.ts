@@ -1,5 +1,9 @@
 /** Any object whose keys are strings. */
-export type StringKeyedObject = Record<string, any>;
+export type StringKeyedObject = Record<
+  string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  any
+>;
 
 /** Any object whose keys are strings and which has a `timestamp`
  * property. */

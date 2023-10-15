@@ -23,6 +23,7 @@ const diceColors = ["Black", "Red", "Green", "Blue", "Yellow", "Orange"];
 
 /** Possible sorts of roll. */
 const rollTypeLUT: Map<number, string> = (() => {
+  // eslint-disable-next-line prefer-const
   let lut = new Map<number, string>();
   lut.set(0, "Regular roll"); // value 0 not explicitly returned, set in code
   lut.set(0x46, "fake placed");
@@ -108,7 +109,7 @@ class GoDice_Device extends BleHandledDevice {
     let y: number | undefined;
     let z: number | undefined;
 
-    var len = buff.byteLength;
+    const len = buff.byteLength;
 
     switch (len) {
       case 1:
@@ -145,19 +146,21 @@ class GoDice_Device extends BleHandledDevice {
           x != null && y != null && z != null ? getValue(x, y, z) : undefined;
         return [{ rolledValue, type: rollTypeLUT.get(type) }];
       }
-      case EVENT_CHARGING_START_END:
+      case EVENT_CHARGING_START_END: {
         // [0x43, 0x68, 0x61, 0x72, 0x01] die is placed on charger
         // [0x43, 0x68, 0x61, 0x72, 0x00] die is removed fom charger
         const event = z === 1 ? "Placed on charger" : "Removed from charger";
         return [{ event }];
-      default:
+      }
+      default: {
         // sends [0x43, 0x68, 0x61, 0x72, 0x00] sometimes
         // maybe charging started/ended?
-        var message = ""; //"unknown message:";
-        for (var i = 0; i < len; i++) {
+        let message = ""; //"unknown message:";
+        for (let i = 0; i < len; i++) {
           message += " 0x" + value.getUint8(i).toString(16).padStart(2, "00");
         }
         return [{ unknownMessage: message }];
+      }
     }
   }
 }

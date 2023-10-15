@@ -208,6 +208,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
     // reliably, so for now we are accepting that the user will
     // encounter the pop-up permissions dialog when using a BT device.
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       console.log("attempting requestDevice()");
 
