@@ -31,20 +31,9 @@ error and device we might get back from the browser?
 # Building rolled-up version
 
 ```
-cd $GIT_ROOT/browser-device-lib
+cd $GIT_ROOT
 npm run build
 ```
 
-which emits `index.js` to the `output` directory. Then overwrite the
-copy in the 'example' directory:
-
-```
-cp -vi output/index.js ../browser-device-lib-example/browser-device-lib
-```
-
-This should ask you if you want to overwrite; say yes.  Then commit
-the file
-
-```
-$GIT_ROOT/browser-device-lib-example/browser-device-lib/index.js
-```
+which emits `index.js` to the `output` directory, and also copies the
+example HTML file (which you might or might not have also changed).
