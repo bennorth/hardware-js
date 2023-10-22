@@ -1,3 +1,6 @@
+// This code just stored here for reference, for as/when we get round to
+// implementing MIDI input.  Not yet used.
+
 // also see https://www.onlinemusictools.com/webmiditest/ for nice simple demo
 // and https://jazz-soft.net/download/web-midi/web-midi-test.html
 
