@@ -69,7 +69,7 @@ export class BrowserDeviceManager {
     requestingSession: BrowserDeviceSession,
     specifier: BrowserDeviceSpecifier
   ): Promise<BrowserHandledDevice | null> {
-    // Do we need to worry about more than one driver being able to
+    // TODO: Do we need to worry about more than one driver being able to
     // provide a device for a particular specifier?  Which driver wins?
     let handledDevice: BrowserHandledDevice | null = null;
     for (const driver of this.drivers) {
