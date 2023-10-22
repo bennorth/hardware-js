@@ -19,8 +19,6 @@ export * as substrates from "./substrates/index";
 // This particular Logitech Attack 3, the one on the left out of the two
 // I have sitting on my desk ("instance"?)
 
-// Word for Hid vs generic Usb vs Serial vs Bluetooth?  "Substrate"?
-
 // Optionally look up "specifier" in a map maintained by the manager?  So
 // users can do something like requestDevice("Logitech Attack 3")? Some
 // way to dump all the device-SKUs the manager knows about.  Could

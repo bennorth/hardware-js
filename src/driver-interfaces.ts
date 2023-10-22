@@ -1,5 +1,3 @@
-// TODO: Rename to "driver-base-classes.ts"?
-
 import { BrowserDeviceSpecifier } from "./core-types";
 import { BrowserHandledDevice } from "./substrates/common";
 import { BrowserDeviceManager } from "./manager";
