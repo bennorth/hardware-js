@@ -20,7 +20,7 @@ export * as substrates from "./substrates/index";
 // I have sitting on my desk ("instance"?)
 
 // Optionally look up "specifier" in a map maintained by the manager?  So
-// users can do something like requestDevice("Logitech Attack 3")? Some
+// users can do something like requestDevice("Logitech Attack 3")?  Some
 // way to dump all the device-SKUs the manager knows about.  Could
 // expose this to end-user either through the app UI or in Python-land.
 
