@@ -5,16 +5,16 @@ import { BrowserHandledDevice } from "./substrates/common";
 import { AnyPhysicalDevice } from "./substrates/index";
 
 /** Has collection of `BrowserDeviceDriver`s, each of which knows how to
- * communicate with one particular kind of device.  Maintains collection
- * of `BrowserDeviceSession`s, which clients use to request access to
- * devices.  A webapp should have just one global instance of
- * `BrowserDeviceManager`, and unless there is a good reason to do
- * otherwise, the function `createPeripheralsManager` should be used to
- * create this one instance. */
+ * communicate with one particular kind of device.  Maintains collection of
+ * `BrowserDeviceSession`s, which clients use to request access to devices.  A
+ * webapp should have just one global instance of `BrowserDeviceManager`, and
+ * unless there is a good reason to do otherwise, the function
+ * `createBrowerseDeviceManager()` should be used to create this one instance.
+ * */
 export class BrowserDeviceManager {
-  /** (Internal use.)  Find which `PeripheralSession` (if any) has a
-   * lease on the given browser device.  Return that session's ID if
-   * there is such a session, else `null`. */
+  /** (Internal use.)  Find which `BrowserDeviceSession` (if any) has a lease on
+   * the given browser device.  Return that session's ID if there is such a
+   * session, else `null`. */
   leaseHolder(device: AnyPhysicalDevice): SessionId | null {
     const lease = this.leases.find(
       (sl) => sl.handledDevice.browserDevice() === device

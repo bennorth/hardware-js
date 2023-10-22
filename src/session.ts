@@ -32,9 +32,9 @@ export class BrowserDeviceSession {
     }
   }
 
-  /** (Internal use.)  Find which `PeripheralSession` (if any) has a
-   * lease on the given browser device.  Return that session's ID if
-   * there is such a session, else `null`. */
+  /** (Internal use.)  Find which `BrowserDeviceSession` (if any) has a lease on
+   * the given browser device.  Return that session's ID if there is such a
+   * session, else `null`. */
   leaseHolder(device: AnyPhysicalDevice): SessionId | null {
     if (this.isClosed) throw this.sessionClosedError("leaseHolder");
     return this.manager.leaseHolder(device);
