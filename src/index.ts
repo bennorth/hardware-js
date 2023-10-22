@@ -6,6 +6,8 @@ import { register as registerDistoLengthSensor } from "./drivers/disto-length-se
 import { register as registerDualShock } from "./drivers/dual-shock";
 import { register as registerGoDice } from "./drivers/go-dice";
 import { register as registerWowweeMipRobot } from "./drivers/wowwee-mip-robot";
+import { register as registerDanceMat } from "./drivers/dance-mat";
+import { register as registerXboxController } from "./drivers/xbox-controller";
 
 export type { BrowserDeviceSpecifier, StringKeyedObject } from "./core-types";
 export * as substrates from "./substrates/index";
@@ -44,6 +46,8 @@ export function createBrowserDeviceManager(): BrowserDeviceManager {
   registerDualShock(manager);
   registerGoDice(manager);
   registerWowweeMipRobot(manager);
+  registerDanceMat(manager);
+  registerXboxController(manager);
 
   return manager;
 }
