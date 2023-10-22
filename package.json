@@ -19,6 +19,7 @@
     "@types/web-bluetooth": "^0.0.18",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.51.0",
     "http-server": "^14.1.1",
     "rollup": "^4.0.2",
