@@ -1,6 +1,6 @@
 # Experimental library for browser-accessible hardware
 
-Design notes are in `src/`.
+Design notes and other documentation are in `doc/`.
 
 ## Development tools
 
