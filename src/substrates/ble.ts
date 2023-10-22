@@ -80,8 +80,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
 
   /** Compute and return an array holding the service-Uuids which this
    * device is interested in.  TODO: Is this nested structure the best
-   * way to represent this?  Keep it simpler for v1 and have just one
-   * service-Uuid having an array of char-Uuids? */
+   * way to represent this? */
   handledServiceUuids(): Array<BluetoothServiceUUID> {
     console.log("handledServices()", this, this.handledCharacteristics);
     // Use set in case some services appear more than once.

@@ -27,8 +27,6 @@ export class BrowserHandledDevice implements DeviceLeaseChannel {
     throw this._notImplementedError("closeBrowserDevice");
   }
 
-  // Is this internal use?
-  //
   /** (Must be overridden by subclass.)  Return the actual in-browser
    * device object, which can be of various types.  The only requirement
    * is that they can be compared for identity (`===`), both within and
