@@ -1,3 +1,6 @@
+// This code is only here for reference.  It's been adjusted to add types but
+// is not ready for use.
+
 // https://developer.chrome.com/articles/hid-examples/
 // https://finninday.net/wiki/index.php/Vernier_Go_Temp_USB_device_in_Linux
 
