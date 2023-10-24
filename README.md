@@ -14,6 +14,8 @@ This library is developed with v18 of node.js.
 Install required dependencies with
 
 ``` shell
+git clone https://github.com/bennorth/hardware-js.git
+cd hardware-js
 npm install
 ```
 
@@ -21,6 +23,7 @@ or (to fetch the latest version once installed)
 
 ``` shell
 npm update
+git pull origin develop
 ```
 
 and then you should be able to do
