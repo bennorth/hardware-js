@@ -17,6 +17,12 @@ Install required dependencies with
 npm install
 ```
 
+or (to fetch the latest version once installed)
+
+``` shell
+npm update
+```
+
 and then you should be able to do
 
 ``` shell
