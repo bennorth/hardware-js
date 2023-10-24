@@ -15,16 +15,16 @@ class DanceMat_Device extends HidHandledDevice {
 
     const center = (bs0 & 0x80) === 0x80;
 
-    const west = (bs1 && 0x10) === 0x10;
-    const south = (bs1 && 0x20) === 0x20;
-    const north = (bs1 && 0x40) === 0x40;
-    const east = (bs1 && 0x80) === 0x80;
+    const west = (bs1 & 0x10) === 0x10;
+    const south = (bs1 & 0x20) === 0x20;
+    const north = (bs1 & 0x40) === 0x40;
+    const east = (bs1 & 0x80) === 0x80;
 
-    const southEast = (bs2 && 0x01) === 0x01;
-    const southWest = (bs2 && 0x02) === 0x02;
+    const southEast = (bs2 & 0x01) === 0x01;
+    const southWest = (bs2 & 0x02) === 0x02;
 
-    const select = (bs2 && 0x10) === 0x10;
-    const start = (bs2 && 0x20) === 0x20;
+    const select = (bs2 & 0x10) === 0x10;
+    const start = (bs2 & 0x20) === 0x20;
 
     return [
       { center, west, south, north, east, southEast, southWest, select, start },
