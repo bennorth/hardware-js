@@ -12,6 +12,10 @@ import { BrowserDeviceManager } from "../manager";
 // those.
 
 export class BleHandledDevice extends BrowserHandledDevice {
+
+  public writeCharacteristic?: BluetoothRemoteGATTCharacteristic; // Add this line
+
+
   // Private use only:
   constructor(readonly device_: BluetoothDevice) {
     super();
@@ -24,6 +28,17 @@ export class BleHandledDevice extends BrowserHandledDevice {
   closeBrowserDevice(): void {
     // TODO: Can we do anything if no gatt?
     this.device_.gatt?.disconnect();
+  }
+  
+  sendMessage(msg: number[]): void {
+	console.log("sending message from BLE", msg);
+	if (this.writeCharacteristic) {
+		
+		this.writeCharacteristic.writeValue(new Uint8Array(msg));
+		
+	} else {
+		console.error("No write characteristic available for message", msg, this.device_, this);
+	}
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -175,7 +190,13 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
             listener
           );
           await characteristic.startNotifications();
-        }
+        } else if (characteristic.properties.write || characteristic.properties.writeWithoutResponse) {
+			console.log("found write characteristic", characteristic);
+			handledDevice.writeCharacteristic = characteristic;
+			console.log("Write characteristic", characteristic);
+		} else {
+			console.error("nothing to do with characteristic", characteristic);
+		}
       }
     }
   }
