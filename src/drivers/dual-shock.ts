@@ -26,6 +26,14 @@ const vendorIdsWithProductIds = [
   { vendorId: 0x0f0d, productId: 0x0084 },
 ];
 
+type DualShock4_Message = {
+  rumbleLight: number;
+  rumbleHeavy: number;
+  r: number;
+  g: number;
+  b: number;
+};
+
 class DualShock4_Device extends HidHandledDevice {
   sendMessage(msg: number[]): void {
     console.log("Sending HID message", msg);
