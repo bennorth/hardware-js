@@ -31,7 +31,7 @@ export class HidHandledDevice extends BrowserHandledDevice {
     throw new Error("HidHandledDevice.acceptInputReport(): not implemented");
   }
 
-  sendMessage(_msg: number[]): void {
+  async sendMessage(_msg: StringKeyedObject): Promise<void> {
     throw new Error("HidHandledDevice.sendMessage(): not implemented");
   }
   ////////////////////////////////////////////////////////////////////////
