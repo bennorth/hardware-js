@@ -195,9 +195,8 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
           characteristic.properties.write ||
           characteristic.properties.writeWithoutResponse
         ) {
-          console.log("found write characteristic", characteristic);
+          console.log("Storing write characteristic", characteristic);
           handledDevice.writeCharacteristic = characteristic;
-          console.log("Write characteristic", characteristic);
         } else {
           console.error("nothing to do with characteristic", characteristic);
         }
