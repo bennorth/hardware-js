@@ -28,10 +28,10 @@ export class BleHandledDevice extends BrowserHandledDevice {
     this.device_.gatt?.disconnect();
   }
 
-  sendMessage(msg: number[]): void {
+  async writeCharacteristicValue(msg: Array<number>): Promise<void> {
     console.log("sending message from BLE", msg);
     if (this.writeCharacteristic) {
-      this.writeCharacteristic.writeValue(new Uint8Array(msg));
+      await this.writeCharacteristic.writeValue(new Uint8Array(msg));
     } else {
       console.error(
         "No write characteristic available for message",
