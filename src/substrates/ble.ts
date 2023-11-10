@@ -31,6 +31,12 @@ export class BleHandledDevice extends BrowserHandledDevice {
   async writeCharacteristicValue(msg: Array<number>): Promise<void> {
     console.log("sending message from BLE", msg);
     if (this.writeCharacteristic) {
+      // TODO: Replace deprecated writeValue() with appropropriate
+      // method, either writeValueWithResponse() or
+      // writeValueWithoutResponse() depending on the characteristic's
+      // properties.
+      //
+      // https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValue
       await this.writeCharacteristic.writeValue(new Uint8Array(msg));
     } else {
       console.error(
