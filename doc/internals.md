@@ -12,7 +12,7 @@ A driver author must write two related classes:
 * a subclass of `BrowserDeviceDriver`; that subclass must implement
   the method `tryProvideDevice()`, which returns an instance of:
 * a subclass of `BrowserHandledDevice`; that subclass must implement
-  the `acceptCommand()` method, and also use the provided base-class
+  the `sendMessage()` method, and also use the provided base-class
   method `BrowserHandledDevice.enqueueReports()` to store reports
   ready for retrieval by the user.
 

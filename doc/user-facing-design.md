@@ -69,14 +69,14 @@ The returned `reports` value is an array of objects, whose properties
 depend on the device.  For example, a jopystick might provide a report
 with number-valued `x` and `y` properties.
 
-## Send commands to the device
+## Send messages to the device
 
 (Not yet implemented.)
 
 To control the device, tell it to accept a command:
 
 ``` javascript
-joystick.acceptCommand(command);
+joystick.sendMessage(message);
 ```
 
 The argument `command` is a plain object, whose properties are
