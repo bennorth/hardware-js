@@ -35,25 +35,23 @@ type DualShock4_Message = {
 };
 
 class DualShock4_Device extends HidHandledDevice {
-  sendMessage(msg: number[]): void {
+  async sendMessage(msg: StringKeyedObject): Promise<void> {
     console.log("Sending HID message", msg);
 
-    const rumble_light = msg[0];
-    const rumble_heavy = msg[1];
-    const r = msg[2];
-    const g = msg[3];
-    const b = msg[4];
+    // TODO: Validate `msg` object, including that each value is within
+    // the relevant range.
+    const dualShockMessage = msg as DualShock4_Message;
 
     const t = new Uint8Array(16);
     t[0] = 5;
     t[1] = 243;
-    t[4] = rumble_light;
-    t[5] = rumble_heavy;
-    t[6] = r;
-    t[7] = g;
-    t[8] = b;
+    t[4] = dualShockMessage.rumbleLight;
+    t[5] = dualShockMessage.rumbleHeavy;
+    t[6] = dualShockMessage.r;
+    t[7] = dualShockMessage.g;
+    t[8] = dualShockMessage.b;
 
-    this.device_.sendReport(t[0], t.slice(1));
+    await this.device_.sendReport(t[0], t.slice(1));
   }
 
   acceptInputReport(event: HIDInputReportEvent): Array<StringKeyedObject> {
