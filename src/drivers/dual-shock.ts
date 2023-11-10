@@ -27,8 +27,7 @@ const vendorIdsWithProductIds = [
 ];
 
 class DualShock4_Device extends HidHandledDevice {
-
-sendMessage(msg: number[]): void {
+  sendMessage(msg: number[]): void {
     console.log("Sending HID message", msg);
 
     const rumble_light = msg[0];
@@ -48,7 +47,7 @@ sendMessage(msg: number[]): void {
 
     this.device_.sendReport(t[0], t.slice(1));
   }
-  
+
   acceptInputReport(event: HIDInputReportEvent): Array<StringKeyedObject> {
     const t = event.data;
     const data = new Uint8Array(event.data.buffer);

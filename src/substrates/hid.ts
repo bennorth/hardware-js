@@ -30,9 +30,9 @@ export class HidHandledDevice extends BrowserHandledDevice {
   acceptInputReport(_event: HIDInputReportEvent): Array<StringKeyedObject> {
     throw new Error("HidHandledDevice.acceptInputReport(): not implemented");
   }
-  
+
   sendMessage(_msg: number[]): void {
-	throw new Error("HidHandledDevice.sendMessage(): not implemented");
+    throw new Error("HidHandledDevice.sendMessage(): not implemented");
   }
   ////////////////////////////////////////////////////////////////////////
 }
