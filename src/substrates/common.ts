@@ -15,10 +15,11 @@ export class BrowserHandledDevice implements DeviceLeaseChannel {
     this.isClosed = false;
   }
 
-  /** (Must be overridden by subclass.)  Act on the given command from
-   * the user. */
-  async acceptCommand(_cmd: StringKeyedObject): Promise<void> {
-    throw this._notImplementedError("acceptCommand");
+  /** (Must be overridden by subclass.)  Convert the given message
+   * into a form understood by the device, and send the converted
+   * message to the device. */
+  async sendMessage(_msg: StringKeyedObject): Promise<void> {
+    throw this._notImplementedError("sendMessage");
   }
 
   /** (Must be overridden by subclass.)  Tell the browser we have

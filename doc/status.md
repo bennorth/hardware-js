@@ -26,7 +26,7 @@ and sometimes it's purely internal, such as configuring a device, or
 requesting a sensor device to send the current reading.
 
 For user-exposed browser-to-device communication, the general design
-idea is to support `device.acceptCommand(cmd)` where `cmd` is a
+idea is to support `device.sendMessage(msg)` where `msg` is a
 string-keyed object.  The individual device driver is responsible for
 decoding that object and communicating with the device.
 

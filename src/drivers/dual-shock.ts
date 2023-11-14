@@ -26,7 +26,34 @@ const vendorIdsWithProductIds = [
   { vendorId: 0x0f0d, productId: 0x0084 },
 ];
 
+type DualShock4_Message = {
+  rumbleLight: number;
+  rumbleHeavy: number;
+  r: number;
+  g: number;
+  b: number;
+};
+
 class DualShock4_Device extends HidHandledDevice {
+  async sendMessage(msg: StringKeyedObject): Promise<void> {
+    console.log("Sending HID message", msg);
+
+    // TODO: Validate `msg` object, including that each value is within
+    // the relevant range.
+    const dualShockMessage = msg as DualShock4_Message;
+
+    const t = new Uint8Array(16);
+    t[0] = 5;
+    t[1] = 243;
+    t[4] = dualShockMessage.rumbleLight;
+    t[5] = dualShockMessage.rumbleHeavy;
+    t[6] = dualShockMessage.r;
+    t[7] = dualShockMessage.g;
+    t[8] = dualShockMessage.b;
+
+    await this.device_.sendReport(t[0], t.slice(1));
+  }
+
   acceptInputReport(event: HIDInputReportEvent): Array<StringKeyedObject> {
     const t = event.data;
     const data = new Uint8Array(event.data.buffer);

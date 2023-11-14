@@ -4,7 +4,7 @@ import { StringKeyedObject } from "./core-types";
  * device by collecting information that the device has sent and by telling the
  * device to accept commands.  And maybe by closing the lease. */
 export interface DeviceLeaseChannel {
-  acceptCommand(msg: StringKeyedObject): Promise<void>;
+  sendMessage(msg: StringKeyedObject): Promise<void>;
   drainReports(): Array<StringKeyedObject>;
   close(): void;
 }
