@@ -94,8 +94,8 @@ function handleData(event: Event) {
   const target = event.target as BluetoothRemoteGATTCharacteristic;
   const data = new Uint8Array(target.value.buffer);
   console.log(data);
-  if (data.length == 5) {
-    if (data[0] == 0xc0 && data[1] == 0x00 && data[2] == 0x05) {
+  if (data.length === 5) {
+    if (data[0] === 0xc0 && data[1] === 0x00 && data[2] === 0x05) {
       //var temp = ((data[4] * 256 + data[3]) - 17468.82) / 373.01;
       const temp = (data[4] * 256 + data[3] - 16981) / 390;
       console.log("Temperature = " + temp.toFixed(1) + "°C");

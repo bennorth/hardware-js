@@ -98,7 +98,7 @@ function handleInputReport(e: HIDInputReportEvent) {
   //console.log("handleInputReport:", e);
   const data = new Uint8Array(e.data.buffer);
 
-  if (data[0] == 1) {
+  if (data[0] === 1) {
     // Measurement
     if (isTemp) {
       const raw = twosComplement(data[2] + (data[3] << 8));
@@ -134,7 +134,7 @@ export function init() {
   isTemp = false;
   isMD = false;
   navigator.hid.requestDevice(requestOptions).then((devices) => {
-    if (devices.length == 0) {
+    if (devices.length === 0) {
       return;
     }
 
