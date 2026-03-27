@@ -11,7 +11,7 @@ export class BrowserDeviceDriver {
    * device is already being leased. */
   tryProvideDevice(
     _manager: BrowserDeviceManager,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Promise<BrowserHandledDevice | null> {
     throw new Error("BrowserDeviceDriver.tryProvideDevice(): not implemented");
   }

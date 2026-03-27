@@ -42,7 +42,7 @@ class XboxController_Device extends HidHandledDevice {
     const buttonView = (data[10] & 0x40) === 0x40;
     const buttonMenu = (data[10] & 0x80) === 0x80;
     const stickLeft = (data[11] & 0x01) === 0x01;
-    const stickRight = (data[11] & 0x02) == 0x02;
+    const stickRight = (data[11] & 0x02) === 0x02;
 
     const direction = data[11]
       ? kDirections[data[11] / 4] // eg 'Controller (XBOX 360 For Windows)'
@@ -78,16 +78,16 @@ class XboxController_Driver extends HidDeviceDriver {
 
   canHandleDevice(
     device: HIDDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return kVendorIdsWithProductIds.some(
       (ids) =>
-        ids.vendorId === device.vendorId && ids.productId === device.productId
+        ids.vendorId === device.vendorId && ids.productId === device.productId,
     );
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return kVendorIdsWithProductIds;
   }

@@ -10,7 +10,7 @@ class DistoLengthSensor_Device extends BleHandledDevice {
   acceptCharacteristicValue(
     _serviceUuid: BluetoothServiceUUID,
     _charUuid: BluetoothCharacteristicUUID,
-    value: DataView
+    value: DataView,
   ): Array<StringKeyedObject> {
     return [{ lengthCM: value.getFloat32(0, true) }];
   }
@@ -23,7 +23,7 @@ class DistoLengthSensor_Driver extends BleDeviceDriver {
 
   canHandleDevice(
     device: BluetoothDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return this.hasThisNamePrefix(device);
   }

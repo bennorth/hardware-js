@@ -8,7 +8,7 @@ export class BrowserDeviceSession {
   constructor(
     readonly displayName: string,
     readonly manager: BrowserDeviceManager,
-    readonly sessionId: SessionId
+    readonly sessionId: SessionId,
   ) {
     this.isClosed = false;
   }
@@ -18,7 +18,7 @@ export class BrowserDeviceSession {
   /** Try to obtain a lease on a device matching the given `specifier`
    * and, if successful, make it part of `this`. */
   async tryProvideLease(
-    specifier: BrowserDeviceSpecifier
+    specifier: BrowserDeviceSpecifier,
   ): Promise<DeviceLeaseChannel | null> {
     if (this.isClosed) throw this.sessionClosedError("tryProvideLease");
     return await this.manager.tryProvideLease(this, specifier);

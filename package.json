@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Work with hardware via the browser",
   "scripts": {
-    "build": "rollup --config rollup.config.js && copyfiles --up 1 example/index.html output"
+    "build": "rollup --config rollup.config.js && cpy example/index.html output/index.html",
+    "lint": "eslint src"
   },
   "author": "Ben North <ben@redfrontdoor.org>",
   "contributors": [
@@ -12,18 +13,19 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@types/dom-serial": "^1.0.4",
-    "@types/w3c-web-hid": "^1.0.4",
-    "@types/w3c-web-usb": "^1.0.7",
-    "@types/web-bluetooth": "^0.0.18",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "copyfiles": "^2.4.1",
-    "eslint": "^8.51.0",
+    "@eslint/js": "^10.0.1",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/dom-serial": "^1.0.6",
+    "@types/w3c-web-hid": "^1.0.7",
+    "@types/w3c-web-usb": "^1.0.13",
+    "@types/web-bluetooth": "^0.0.21",
+    "cpy": "^13.2.1",
+    "cpy-cli": "^7.0.0",
     "http-server": "^14.1.1",
-    "rollup": "^4.22.4",
-    "tslib": "^2.6.2",
-    "typescript": "^5.2.2"
+    "prettier": "^3.8.1",
+    "rollup": "^4.60.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2"
   }
 }

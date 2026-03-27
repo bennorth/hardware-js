@@ -69,7 +69,7 @@ function getStartMeasurementCommand(channelMask: number): Uint8Array {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getMeasurementPeriodCommand(
-  measurementPeriodMicroseconds: number
+  measurementPeriodMicroseconds: number,
 ): Uint8Array {
   // 32 + (161<<8) + (7<<16) + (0<<24) = 500,000 microseconds
   return new Uint8Array([
@@ -153,17 +153,17 @@ function handleInputReport(e) {
       // OrderCode offset = 6 (header+cmd+counter)
       // Ordercode length = 16
       const orderCode = decoder.decode(
-        new Uint8Array(data.slice(6, 6 + 16)).filter(nonZero)
+        new Uint8Array(data.slice(6, 6 + 16)).filter(nonZero),
       );
       // SerialNumber offset = 22 (OrderCode offset + Ordercode length)
       // SerialNumber length = 16
       const serialNumber = decoder.decode(
-        new Uint8Array(data.slice(22, 22 + 16)).filter(nonZero)
+        new Uint8Array(data.slice(22, 22 + 16)).filter(nonZero),
       );
       // DeviceName offset = 38 (SerialNumber offset + SerialNumber length)
       // DeviceName length = 32
       const name = decoder.decode(
-        new Uint8Array(data.slice(38, 38 + 32)).filter(nonZero)
+        new Uint8Array(data.slice(38, 38 + 32)).filter(nonZero),
       );
       console.log("GET_INFO:", orderCode, serialNumber, name);
       break;
@@ -182,7 +182,7 @@ function handleInputReport(e) {
         "maxPeriod",
         ((response.getUint32(132, true) << 32) +
           response.getUint32(128, true)) /
-          1000
+          1000,
       );
       console.log("typicalPeriod", response.getUint32(136, true) / 1000);
       console.log("granularity", response.getUint32(140, true) / 1000);
@@ -191,13 +191,13 @@ function handleInputReport(e) {
       // sensorDescription length = 60
       console.log(
         "name",
-        decoder.decode(new Uint8Array(response.buffer, 14, 60).filter(nonZero))
+        decoder.decode(new Uint8Array(response.buffer, 14, 60).filter(nonZero)),
       );
       // sensorUnit offset = 74 (sensorDescription offset + sensorDescription length)
       // sensorUnit length = 32
       console.log(
         "unit",
-        decoder.decode(new Uint8Array(response.buffer, 74, 32).filter(nonZero))
+        decoder.decode(new Uint8Array(response.buffer, 74, 32).filter(nonZero)),
       );
       console.log("mutalExclusionMask", response.getUint32(144, true));
       break;
@@ -227,8 +227,8 @@ commands.push(constructCommand(GD.commands.INIT));
 // COMPULSORY, don't get sent data without this
 commands.push(
   constructCommand(
-    getStartMeasurementCommand(1 /* channelMask TODO, 1 = temperature? */)
-  )
+    getStartMeasurementCommand(1 /* channelMask TODO, 1 = temperature? */),
+  ),
 );
 //commands.push([19, 0x58, 19, 247, 124, 0x18, 255, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 function sendCommands() {
@@ -285,7 +285,7 @@ function init() {
           console.log(
             "characteristics",
             characteristics,
-            characteristics.length
+            characteristics.length,
           );
           for (let i = 0; i < characteristics.length; i++) {
             let characteristic = characteristics[i];
@@ -301,7 +301,7 @@ function init() {
                   "characteristicvaluechanged",
                   function (event) {
                     handleInputReport(event);
-                  }
+                  },
                 );
                 characteristic.startNotifications().then(() => {
                   console.log("started OK");

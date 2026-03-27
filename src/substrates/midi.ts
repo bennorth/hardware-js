@@ -10,25 +10,25 @@ function processMessage(msg: MIDIMessageEvent) {
   switch (command) {
     case 128: // note released (not returned by Alesis Q Mini)
     case 144: // note pressed/released
-      if (data[2] == 0 || command == 128) {
+      if (data[2] === 0 || command === 128) {
         console.log("note = " + getNoteName(data[1]) + " released");
       } else {
         // 60 = Middle C
         console.log(
-          "note = " + getNoteName(data[1]) + " velocity = " + data[2]
+          "note = " + getNoteName(data[1]) + " velocity = " + data[2],
         );
       }
       break;
     case 176: // Alesis Q Mini
-      if (data[1] == 7) {
+      if (data[1] === 7) {
         console.log("volume set to " + data[2] + "/127");
-      } else if (data[1] == 1) {
+      } else if (data[1] === 1) {
         // "MOD" Modulation button returns higher and higher values the longer it's pressed
         // then back to 0 when released
         console.log("Modulation set to " + data[2] + "/127");
-      } else if (data[1] == 64) {
+      } else if (data[1] === 64) {
         // "SUST" Sustain button - toggles on/off
-        console.log("Sustain " + (data[2] == 0 ? "off" : "on"));
+        console.log("Sustain " + (data[2] === 0 ? "off" : "on"));
       } else {
         console.log(msg.data);
       }
@@ -85,7 +85,7 @@ function newMidiDevice() {
     webMidi.outputs.forEach(function (midiOutput) {
       midiOutputs.push(midiOutput);
       console.log(
-        "MIDI Output device " + midiOutput.name + " " + midiOutput.version
+        "MIDI Output device " + midiOutput.name + " " + midiOutput.version,
       );
       // play Middle C loud
       //midiOutput.send([144, 60, 127]);*/
@@ -97,7 +97,7 @@ function newMidiDevice() {
     webMidi.inputs.forEach(function (midiInput) {
       midiInputs.push(midiInput);
       console.log(
-        "MIDI Input device " + midiInput.name + " " + midiInput.version
+        "MIDI Input device " + midiInput.name + " " + midiInput.version,
       );
       midiInput.onmidimessage = (msg) =>
         processMessage(msg as MIDIMessageEvent);

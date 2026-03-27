@@ -9,7 +9,7 @@ intended to be helpful while developing drivers for new devices.
 
 ### Development environment set-up
 
-This library is developed with v18 of node.js.
+This library is developed with v24 of Node.js.
 
 Install required dependencies with
 
@@ -36,4 +36,4 @@ npx http-server
 
 and visit `http://localhost:8080/` in your browser.
 
-ESLint is installed; you can do `npx eslint src/**/*.ts` to run it.
+ESLint is installed; you can do `npm run lint` to run it.

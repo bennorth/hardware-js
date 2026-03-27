@@ -23,7 +23,6 @@ const diceColors = ["Black", "Red", "Green", "Blue", "Yellow", "Orange"];
 
 /** Possible sorts of roll. */
 const rollTypeLUT: Map<number, string> = (() => {
-  // eslint-disable-next-line prefer-const
   let lut = new Map<number, string>();
   lut.set(0, "Regular roll"); // value 0 not explicitly returned, set in code
   lut.set(0x46, "fake placed");
@@ -49,7 +48,7 @@ class Vector3 {
 
   normalize() {
     const length = Math.sqrt(
-      this.x * this.x + this.y * this.y + this.z * this.z
+      this.x * this.x + this.y * this.y + this.z * this.z,
     );
 
     if (length > 0) {
@@ -94,7 +93,7 @@ class GoDice_Device extends BleHandledDevice {
   acceptCharacteristicValue(
     _serviceUuid: BluetoothServiceUUID,
     _charUuid: BluetoothCharacteristicUUID,
-    value: DataView
+    value: DataView,
   ): Array<StringKeyedObject> {
     console.log("GoDice", value);
 
@@ -177,7 +176,7 @@ class GoDice_Driver extends BleDeviceDriver {
 
   canHandleDevice(
     device: BluetoothDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return this.hasThisNamePrefix(device);
   }

@@ -12,7 +12,7 @@ class PicoTempSensor_Device extends BleHandledDevice {
   acceptCharacteristicValue(
     _serviceUuid: BluetoothServiceUUID,
     _charUuid: BluetoothCharacteristicUUID,
-    value: DataView
+    value: DataView,
   ): Array<StringKeyedObject> {
     const msg = textDecoder.decode(value.buffer);
     return [{ msg }];
@@ -27,7 +27,7 @@ class PicoTempSensor_Driver extends BleDeviceDriver {
 
   canHandleDevice(
     device: BluetoothDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return this.hasThisNamePrefix(device);
   }

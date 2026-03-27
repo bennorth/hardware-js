@@ -21,7 +21,7 @@ let reportId: number;
 let isTemp = false;
 let isMD = false;
 
-type OctetArray = Int8Array | Uint8Array;
+type OctetArray = Int8Array<ArrayBuffer> | Uint8Array<ArrayBuffer>;
 
 // Util to convert byte to nice hex string
 function byteToHex(byte: number) {
@@ -36,7 +36,7 @@ function byteToHex(byte: number) {
 
 // Util to convert byte array to hex string.
 // bytes is an typed array (Int8Array or Uint8Array)
-function toHexString(bytes: OctetArray) {
+function toHexString(bytes: OctetArray | Uint8Array) {
   return Array.from(bytes).map(byteToHex).join(``);
 }
 
@@ -98,7 +98,7 @@ function handleInputReport(e: HIDInputReportEvent) {
   //console.log("handleInputReport:", e);
   const data = new Uint8Array(e.data.buffer);
 
-  if (data[0] == 1) {
+  if (data[0] === 1) {
     // Measurement
     if (isTemp) {
       const raw = twosComplement(data[2] + (data[3] << 8));
@@ -134,7 +134,7 @@ export function init() {
   isTemp = false;
   isMD = false;
   navigator.hid.requestDevice(requestOptions).then((devices) => {
-    if (devices.length == 0) {
+    if (devices.length === 0) {
       return;
     }
 

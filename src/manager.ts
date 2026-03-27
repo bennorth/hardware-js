@@ -17,7 +17,7 @@ export class BrowserDeviceManager {
    * session, else `null`. */
   leaseHolder(device: AnyPhysicalDevice): SessionId | null {
     const lease = this.leases.find(
-      (sl) => sl.handledDevice.browserDevice() === device
+      (sl) => sl.handledDevice.browserDevice() === device,
     );
 
     // Convert undefined to null:
@@ -67,7 +67,7 @@ export class BrowserDeviceManager {
    * `null`. */
   async tryProvideLease(
     requestingSession: BrowserDeviceSession,
-    specifier: BrowserDeviceSpecifier
+    specifier: BrowserDeviceSpecifier,
   ): Promise<BrowserHandledDevice | null> {
     // TODO: Do we need to worry about more than one driver being able to
     // provide a device for a particular specifier?  Which driver wins?
@@ -123,6 +123,6 @@ export class BrowserDeviceManager {
 class SessionDeviceLease {
   constructor(
     readonly session: BrowserDeviceSession,
-    readonly handledDevice: BrowserHandledDevice
+    readonly handledDevice: BrowserHandledDevice,
   ) {}
 }

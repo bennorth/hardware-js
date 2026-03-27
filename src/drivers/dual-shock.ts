@@ -58,7 +58,6 @@ class DualShock4_Device extends HidHandledDevice {
     const t = event.data;
     const data = new Uint8Array(event.data.buffer);
 
-    // eslint-disable-next-line prefer-const
     let ret: StringKeyedObject = {};
 
     ret["leftStickX"] = data[0];
@@ -107,21 +106,22 @@ class DualShock4_Device extends HidHandledDevice {
     ret["accelY"] = t.getInt16(21);
     ret["accelZ"] = t.getInt16(23);
 
-    // eslint-disable-next-line prefer-const
     let touches: Array<StringKeyedObject> = [];
 
-    128 & data[34] ||
+    if ((128 & data[34]) === 0) {
       touches.push({
         touchId: 127 & data[34],
         x: ((15 & data[36]) << 8) | data[35],
         y: (data[37] << 4) | ((240 & data[36]) >> 4),
       });
-    128 & data[38] ||
+    }
+    if ((128 & data[38]) === 0) {
       touches.push({
         touchId: 127 & data[38],
         x: ((15 & data[40]) << 8) | data[39],
         y: (data[41] << 4) | ((240 & data[40]) >> 4),
       });
+    }
 
     ret["touches"] = touches;
 
@@ -137,12 +137,12 @@ class DualShock4_Driver extends HidDeviceDriver {
   canHandleDevice(device: HIDDevice, _specifier: BrowserDeviceSpecifier) {
     return vendorIdsWithProductIds.some(
       (ids) =>
-        ids.vendorId === device.vendorId && ids.productId === device.productId
+        ids.vendorId === device.vendorId && ids.productId === device.productId,
     );
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return vendorIdsWithProductIds;
   }
