@@ -58,7 +58,6 @@ class DualShock4_Device extends HidHandledDevice {
     const t = event.data;
     const data = new Uint8Array(event.data.buffer);
 
-    // eslint-disable-next-line prefer-const
     let ret: StringKeyedObject = {};
 
     ret["leftStickX"] = data[0];
@@ -107,7 +106,6 @@ class DualShock4_Device extends HidHandledDevice {
     ret["accelY"] = t.getInt16(21);
     ret["accelZ"] = t.getInt16(23);
 
-    // eslint-disable-next-line prefer-const
     let touches: Array<StringKeyedObject> = [];
 
     128 & data[34] ||

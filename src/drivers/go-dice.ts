@@ -23,7 +23,6 @@ const diceColors = ["Black", "Red", "Green", "Blue", "Yellow", "Orange"];
 
 /** Possible sorts of roll. */
 const rollTypeLUT: Map<number, string> = (() => {
-  // eslint-disable-next-line prefer-const
   let lut = new Map<number, string>();
   lut.set(0, "Regular roll"); // value 0 not explicitly returned, set in code
   lut.set(0x46, "fake placed");
