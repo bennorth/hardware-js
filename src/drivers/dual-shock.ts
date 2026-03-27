@@ -108,18 +108,20 @@ class DualShock4_Device extends HidHandledDevice {
 
     let touches: Array<StringKeyedObject> = [];
 
-    128 & data[34] ||
+    if ((128 & data[34]) === 0) {
       touches.push({
         touchId: 127 & data[34],
         x: ((15 & data[36]) << 8) | data[35],
         y: (data[37] << 4) | ((240 & data[36]) >> 4),
       });
-    128 & data[38] ||
+    }
+    if ((128 & data[38]) === 0) {
       touches.push({
         touchId: 127 & data[38],
         x: ((15 & data[40]) << 8) | data[39],
         y: (data[41] << 4) | ((240 & data[40]) >> 4),
       });
+    }
 
     ret["touches"] = touches;
 
