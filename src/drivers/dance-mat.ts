@@ -40,13 +40,13 @@ class DanceMat_Driver extends HidDeviceDriver {
 
   canHandleDevice(
     device: HIDDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return device.vendorId === kVendorId && device.productId === kProductId;
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return [{ vendorId: kVendorId, productId: kProductId }];
   }

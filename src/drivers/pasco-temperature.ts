@@ -143,7 +143,7 @@ async function getPermittedBluetoothDevices() {
           "Ignoring device " +
             device0.name +
             " as it doesn't start with " +
-            namePrefix
+            namePrefix,
         );
       }
     });

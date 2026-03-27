@@ -43,7 +43,7 @@ export class BleHandledDevice extends BrowserHandledDevice {
         "No write characteristic available for message",
         msg,
         this.device_,
-        this
+        this,
       );
     }
   }
@@ -54,10 +54,10 @@ export class BleHandledDevice extends BrowserHandledDevice {
   acceptCharacteristicValue(
     _serviceUuid: BluetoothServiceUUID,
     _charUuid: BluetoothCharacteristicUUID,
-    _value: DataView
+    _value: DataView,
   ): Array<StringKeyedObject> {
     throw new Error(
-      "BleHandledDevice.acceptCharacteristicValue(): not implemented"
+      "BleHandledDevice.acceptCharacteristicValue(): not implemented",
     );
   }
   ////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ export type ScopedCharacteristics = {
 };
 
 type HandledDeviceConstructor = new (
-  device: BluetoothDevice
+  device: BluetoothDevice,
 ) => BleHandledDevice;
 
 export class BleDeviceDriver implements BrowserDeviceDriver {
@@ -82,7 +82,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
   //
   canHandleDevice(
     _device: BluetoothDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     throw this._notImplementedError("canHandleDevice");
   }
@@ -107,7 +107,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
     console.log("handledServices()", this, this.handledCharacteristics);
     // Use set in case some services appear more than once.
     const serviceUuids = new Set(
-      this.handledCharacteristics().map((x) => x.serviceUuid)
+      this.handledCharacteristics().map((x) => x.serviceUuid),
     );
     return Array.from(serviceUuids);
   }
@@ -119,7 +119,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
   newCharValueListener(
     handledDevice: BleHandledDevice,
     serviceUuid: BluetoothServiceUUID,
-    charUuid: BluetoothCharacteristicUUID
+    charUuid: BluetoothCharacteristicUUID,
   ) {
     console.log("constructing event listener for ble-device", handledDevice);
     return (event: Event) => {
@@ -137,8 +137,8 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
         handledDevice.acceptCharacteristicValue(
           serviceUuid,
           charUuid,
-          target.value
-        )
+          target.value,
+        ),
       );
     };
   }
@@ -171,7 +171,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
           const listener = this.newCharValueListener(
             handledDevice,
             serviceUuid,
-            charUuid
+            charUuid,
           );
 
           // After quite a bit of experimentation, the evidence is quite
@@ -187,14 +187,14 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
           abortSignal.addEventListener("abort", () =>
             characteristic.removeEventListener(
               "characteristicvaluechanged",
-              listener
-            )
+              listener,
+            ),
           );
 
           await characteristic.stopNotifications();
           characteristic.addEventListener(
             "characteristicvaluechanged",
-            listener
+            listener,
           );
           await characteristic.startNotifications();
         } else if (
@@ -213,7 +213,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
   /** (Internal use.)  Construct a handled-BLE-device for the given raw
    * bluetooth device. */
   async createHandledDevice(
-    device: BluetoothDevice
+    device: BluetoothDevice,
   ): Promise<BleHandledDevice> {
     const deviceClass = this.deviceClass();
     const handledDevice = new deviceClass(device);
@@ -223,7 +223,7 @@ export class BleDeviceDriver implements BrowserDeviceDriver {
 
   async tryProvideDevice(
     _manager: BrowserDeviceManager,
-    specifier: BrowserDeviceSpecifier
+    specifier: BrowserDeviceSpecifier,
   ): Promise<BleHandledDevice | null> {
     console.log("BLE tryProvideDevice()", specifier);
     if (!this.canProvide(specifier)) {

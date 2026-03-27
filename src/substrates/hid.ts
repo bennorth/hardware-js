@@ -54,7 +54,7 @@ export class HidDeviceDriver extends BrowserDeviceDriver {
    * also provided in case it makes a difference to the answer. */
   canHandleDevice(
     _device: HIDDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     throw this._notImplementedError("canHandleDevice");
   }
@@ -62,7 +62,7 @@ export class HidDeviceDriver extends BrowserDeviceDriver {
   /** What filters (for `requestDevice()`) should be used when asking
    * the user to approve a device for handling by this driver? */
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     throw this._notImplementedError("filtersFromSpecifier");
   }
@@ -89,7 +89,7 @@ export class HidDeviceDriver extends BrowserDeviceDriver {
   newInputReportListener(handledDevice: HidHandledDevice) {
     return (event: Event) => {
       handledDevice.enqueueReports(
-        handledDevice.acceptInputReport(event as HIDInputReportEvent)
+        handledDevice.acceptInputReport(event as HIDInputReportEvent),
       );
     };
   }
@@ -107,7 +107,7 @@ export class HidDeviceDriver extends BrowserDeviceDriver {
   /** Try to provide an HID Device satisfying the given specifier. */
   async tryProvideDevice(
     manager: BrowserDeviceManager,
-    specifier: BrowserDeviceSpecifier
+    specifier: BrowserDeviceSpecifier,
   ): Promise<HidHandledDevice | null> {
     console.log("HID tryProvideDevice()", specifier);
     if (!this.canProvide(specifier)) {

@@ -78,16 +78,16 @@ class XboxController_Driver extends HidDeviceDriver {
 
   canHandleDevice(
     device: HIDDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return kVendorIdsWithProductIds.some(
       (ids) =>
-        ids.vendorId === device.vendorId && ids.productId === device.productId
+        ids.vendorId === device.vendorId && ids.productId === device.productId,
     );
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return kVendorIdsWithProductIds;
   }

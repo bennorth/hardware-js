@@ -38,7 +38,7 @@ class WowweeMipRobot_Device extends BleHandledDevice {
   acceptCharacteristicValue(
     _serviceUuid: BluetoothServiceUUID,
     _charUuid: BluetoothCharacteristicUUID,
-    value: DataView
+    value: DataView,
   ): Array<StringKeyedObject> {
     // QUERY: This was "event.srcElement.value.buffer", but no "event"
     // in scope.
@@ -73,7 +73,7 @@ class WowweeMipRobot_Driver extends BleDeviceDriver {
 
   canHandleDevice(
     device: BluetoothDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return this.hasThisNamePrefix(device);
   }

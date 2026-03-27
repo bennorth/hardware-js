@@ -17,13 +17,13 @@ class MantaMM812_Driver extends HidDeviceDriver {
 
   canHandleDevice(
     device: HIDDevice,
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): boolean {
     return device.vendorId === 0x081f && device.productId === 0xe401;
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return [{ vendorId: 0x081f, productId: 0xe401 }];
   }

@@ -15,7 +15,7 @@ function processMessage(msg: MIDIMessageEvent) {
       } else {
         // 60 = Middle C
         console.log(
-          "note = " + getNoteName(data[1]) + " velocity = " + data[2]
+          "note = " + getNoteName(data[1]) + " velocity = " + data[2],
         );
       }
       break;
@@ -97,7 +97,7 @@ function newMidiDevice() {
     webMidi.inputs.forEach(function (midiInput) {
       midiInputs.push(midiInput);
       console.log(
-        "MIDI Input device " + midiInput.name + " " + midiInput.version
+        "MIDI Input device " + midiInput.name + " " + midiInput.version,
       );
       midiInput.onmidimessage = (msg) =>
         processMessage(msg as MIDIMessageEvent);

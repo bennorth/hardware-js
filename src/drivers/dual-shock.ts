@@ -137,12 +137,12 @@ class DualShock4_Driver extends HidDeviceDriver {
   canHandleDevice(device: HIDDevice, _specifier: BrowserDeviceSpecifier) {
     return vendorIdsWithProductIds.some(
       (ids) =>
-        ids.vendorId === device.vendorId && ids.productId === device.productId
+        ids.vendorId === device.vendorId && ids.productId === device.productId,
     );
   }
 
   filtersFromSpecifier(
-    _specifier: BrowserDeviceSpecifier
+    _specifier: BrowserDeviceSpecifier,
   ): Array<HIDDeviceFilter> {
     return vendorIdsWithProductIds;
   }
